@@ -1,0 +1,14 @@
+[package]
+name = "ipconfig_rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex = "1.10"
+
+[profile.release]
+opt-level = "z"     # Otimiza focado no tamanho do binário (muda de -O3 para -Os/-Oz)
+lto = true          # Habilita Link-Time Optimization (analisa dependências cruzadas para remover código morto)
+codegen-units = 1   # Reduz unidades de geração de código a 1, aumentando a capacidade de otimização do compilador
+panic = "abort"     # Desabilita o mecanismo de unwinding de pânico, removendo lógica pesada de tratamento de erros
+strip = true        # Remove todos os símbolos de debug e tabelas de texto de dentro do executável final
